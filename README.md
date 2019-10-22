@@ -67,7 +67,7 @@ Reflection: doing this on Cloud Run (still in Beta) ought to be a lot simpler as
 
 The command would be something along the lines of:
 
- `gcloud beta run deploy <service name> --region us-central1 --project <project id> --image gcr.io/<project id>/<image name>:<tag> --platform managed` 
+##### `gcloud beta run deploy <service name> --region us-central1 --project <project id> --image gcr.io/<project id>/<image name>:<tag> --platform managed` 
   
   (you'd need to have beta components enabled via SDK, as well as the Cloud Run API via console)
   
