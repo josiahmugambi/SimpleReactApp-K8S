@@ -1,6 +1,5 @@
 
-# Steps taken to create and deploy to Kubernetes Cluster on GCP.
-
+# Steps 
 
 ### 1. Create React App
 scroll down to see instructions
@@ -18,7 +17,7 @@ node_modules
 
 From within the root directory of the app, the basic command is: 
 
-#### `sudo docker run -v ${PWD}:/app -v /app/node_modules -p 3001:3000 --rm <your image name>:<tag>`
+##### `sudo docker run -v ${PWD}:/app -v /app/node_modules -p 3001:3000 --rm <your image name>:<tag>`
 
 
 You should be able to view your app on http://localhost:3001 Port 3000 is what other containers would use to communicate with your app if you had more than one running.
@@ -37,7 +36,7 @@ The GCP documentation will be useful here. I used the GC Console (faster for thi
 
 I used f1-micro instances in a 3 node cluster (I'll delete the cluster in a few days) so as to keep the bill under the always free tier 
 
-#### 6. Configure kubectl credentials
+####  Configure kubectl credentials
 ##### `gcloud container clusters get-credentials <cluster name>`   
 
 You can now view details of the cluster using  
@@ -45,7 +44,7 @@ You can now view details of the cluster using
 ##### `kubectl get <nodes/pods/services/deployments>`
 
 
-### 7. Deploy app to cluster
+#### Deploy app to cluster
 
 ##### `kubectl create deployment <deployment name> --image gcr.io/<project id>/<image name>:<tag>`
 
@@ -54,19 +53,21 @@ You can now view details of the cluster using
 ##### `kubectl get services` 
 
 this should give you shomething similar to:
-
-`$ kubectl get services                                      (master✱)
+```
+$ kubectl get services                                      (master✱)
 NAME         TYPE           CLUSTER-IP   EXTERNAL-IP       PORT(S)        AGE
 a1pp         LoadBalancer   10.0.5.63    104.198.131.155   80:30731/TCP   9m
-kubernetes   ClusterIP      10.0.0.1     <none>            443/TCP        1h`
+kubernetes   ClusterIP      10.0.0.1     <none>            443/TCP        1h
+```
 
 Navigate to http://<external-ip-address> to view your deployed app
-  
-(reflection: doing this on Cloud Run (still in Beta) ought to be a lot simpler as a result of abstracting away the complexitiy of kubernetes - which is fun to learn and master if you're into infrastructure - but at times you just want to deploy an app in a hurry)
 
-the command would be something along the lines of:
+### Cloud Run ?
+Reflection: doing this on Cloud Run (still in Beta) ought to be a lot simpler as a result of abstracting away the complexitiy of kubernetes - which is fun to learn and master if you're into infrastructure - but at times you just want to deploy an app in a hurry
 
- gcloud beta run deploy <service name> --region us-central1 --project <project id> --image gcr.io/<project id>/<image name>:<tag> --platform managed 
+The command would be something along the lines of:
+
+ `gcloud beta run deploy <service name> --region us-central1 --project <project id> --image gcr.io/<project id>/<image name>:<tag> --platform managed` 
   
   (you'd need to have beta components enabled via SDK, as well as the Cloud Run API via console)
   
