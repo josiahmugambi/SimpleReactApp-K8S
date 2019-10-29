@@ -11,7 +11,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-#### `npm start`
+ `npm start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -19,12 +19,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-#### `npm test`
+ `npm test`
 
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-#### `npm run build`
+ `npm run build`
 
 Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -34,7 +34,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-#### `npm run eject`
+  `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
@@ -57,7 +57,7 @@ I used multi-stage build to optimize the size of the final container image. (h/t
 
 Also add a .dockerignore (works similar to .gitignore) in the same location and in it add
 
-node_modules
+`node_modules`
 
 ## 3. Run locally on docker
 (This assumes you have docker installed on your laptop, if not, head over to https://docs.docker.com/install/ for instructions)
@@ -110,7 +110,7 @@ a1pp         LoadBalancer   10.0.5.63    104.198.131.155   80:30731/TCP   9m
 kubernetes   ClusterIP      10.0.0.1     <none>            443/TCP        1h
 ```
 
-Navigate to http://<external-ip-address> to view your deployed app
+Navigate to `http://<external-ip-address>` to view your deployed app
 
 ## Deploying to Cloud Run ?
 
