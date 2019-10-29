@@ -53,7 +53,41 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## 2. Package into a Docker image
 From within the root directory of the app create a Dockerfile (see https://docs.docker.com/engine/reference/builder/)
-I used multi-stage build to optimize the size of the final container image. (h/t)
+
+I used multi-stage build to optimize the size of the final container image. (borrowed heavily from here) - http://progressivecoder.com/docker-multi-stage-build-for-running-react-application-on-nginx-server/
+
+Docker multistage builds are super helpful in keeping the size of the final container small. I especially like the size of golang builds but that's the subject of another post.
+
+Here is it:
+
+```
+#Build Stage Start
+
+#Specify a base image
+FROM node:alpine as builder 
+
+#Specify a working directory
+WORKDIR '/app'
+
+#Copy the dependencies file
+COPY package.json .
+
+#Install dependencies
+RUN npm install
+
+#Copy remaining files
+COPY . .
+
+#Build the project for production
+RUN npm run build 
+
+#Run Stage Start
+FROM nginx
+
+#Copy production build files from builder phase to nginx
+COPY --from=builder /app/build /usr/share/nginx/html
+```
+
 
 Also add a .dockerignore (works similar to .gitignore) in the same location and in it add
 
